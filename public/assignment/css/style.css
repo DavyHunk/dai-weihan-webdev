@@ -3,5 +3,88 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 65px;
+}
+
+.navbar-default.website {
+    background-color: #3d96bd;
+}
+
+.navbar-default.website .navbar-brand {
+    color: white;
+}
+
+.glyphicon.black{
+    color:black; !important;
+}
+.glyphicon.second{
+    left: 30px;
+}
+.glyphicon.header{
+    color: white;
+}
+
+.glyphicon.bottom{
+    color: white;
+}
+
+.glyphicon.footer{
+    color: white;
+    margin-right:10px;
+}
+
+
+a.text:hover{
+    background: blue;
+    box-shadow: #3d96bd;
+    text-decoration:none;
+}
+
+div.bottom{
+    margin-bottom: 35px;
+}
+
+body.website{
+    overflow-x: hidden;
+    margin-top: 3px;
+    margin-bottom: 30px;
+}
+
+div.navbar-text.left{
+    margin-left: 0px;
+}
+
+div.navbar-text.right{
+    margin-right: 0px;
+}
+
+div.navbar-text.right-middle{
+    margin-right: 12px;
+}
+
+
+div.navbar-text.bottom{
+    text-align: center;
+    width: 100%;
+}
+
+.jpa-widget-tool {
+    position: absolute;
+    right: 12px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 1;
+}
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+b.red {
+    color: red;
 }
