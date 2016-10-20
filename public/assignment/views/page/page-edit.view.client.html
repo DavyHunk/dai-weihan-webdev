@@ -22,7 +22,7 @@
             <b>Edit Page</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="page-list.html">
+            <a ng-click="model.updatePage(page)">
                 <span class="glyphicon black glyphicon-ok"></span>
             </a>
         </div>
@@ -55,7 +55,7 @@
     </form>
 
     <a class="btn btn-danger  btn-block"
-       href="page-list.html">Delete</a>
+       ng-click="model.deletePage()">Delete</a>
 </div>
 
 

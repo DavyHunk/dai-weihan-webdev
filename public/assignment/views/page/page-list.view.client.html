@@ -36,49 +36,13 @@
 
 
 <div class="container-fluid">
-
     <ul class="list-group">
-        <li class="list-group-item no_border">
-            <a href="widget-list.html" class="text">
-                Blog Post
+        <li ng-repeat="page in model.pages"
+            class="list-group-item">
+            <a href="#/user/website/{{page.websiteId}}/page/{{page._id}}/widget" class="text">
+                {{page.name}}
             </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="widget-list.html" class="text">
-                Blogs
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="widget-list.html" class="text">
-                Home
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="widget-list.html" class="text">
-                About
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="widget-list.html" class="text">
-                Contact Us
-            </a>
-            <a href="page-edit.html" class="pull-right">
+            <a href="#/user/website/{{page.websiteId}}/page/{{page._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>

@@ -5,7 +5,7 @@
 
 
 
-    function UserService($http) {
+    function UserService() {
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
             {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -26,15 +26,8 @@
 
 
         function createUser(user) {
-            var newUser = {
-                _id: user._id,
-                username: user.username,
-                password: user.password,
-                firstName: user.firstName,
-                lastName: user.lastName
-            };
-            users.push(newUser);
-            return newUser;
+            users.push(user);
+            return users;
         }
 
         function findUserById(userId) {
@@ -57,7 +50,8 @@
 
         function findUserByCredentials(username, password) {
             for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
+                if(users[i].username === username
+                    && users[i].password === password) {
                     return users[i];
                 }
             }
@@ -65,16 +59,9 @@
         }
 
         function updateUser(userId, user) {
-            var newUser = {
-                _id: user._id,
-                username: user.username,
-                password: user.password,
-                firstName: user.firstName,
-                lastName: user.lastName
-            };
             for(var i in users) {
                 if(users[i]._id === userId) {
-                    users[i] = newUser;
+                    users[i] = user;
                     return true;
                 }
             }
@@ -91,8 +78,10 @@
             return false;
         }
 
+    function init(){
 
-
+    }
+init();
 
     }
 })();

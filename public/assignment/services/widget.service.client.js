@@ -38,13 +38,14 @@
 
 
 
-        function findWidgetsByPageId(pageId) {   //???
+        function findWidgetsByPageId(pageId) {
+            var result = [];
             for(var i in widgets) {
                 if(widgets[i].pageId === pageId) {
-                    return widgets[i];
+                    result.push(widgets[i]);
                 }
             }
-            return null;
+            return result;
         }
 
 

@@ -4,7 +4,7 @@
         .factory("PageService", PageService);
 
 
-    function PageService($http) {
+    function PageService() {
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456" },
             { "_id": "432", "name": "Post 2", "websiteId": "456" },
@@ -20,7 +20,7 @@
         };
         return api;
 
-        function createPage(websiteId, page) { //???
+        function createPage(websiteId, page) {
             var newPage = {
                 _id: page._id,
                 name: page.name,
@@ -32,13 +32,14 @@
 
 
 
-        function findPageByWebsiteId(websiteId) {   //???
+        function findPageByWebsiteId(websiteId) {
+            var result = [];
             for(var i in pages) {
                 if(pages[i].websiteId === websiteId) {
-                    return pages[i];
+                    result.push(pages[i]);
                 }
             }
-            return null;
+            return result;
         }
 
 

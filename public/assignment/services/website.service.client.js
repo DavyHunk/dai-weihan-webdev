@@ -12,7 +12,7 @@
         { "_id": "789", "name": "Chess",       "developerId": "234" }
     ];
 
-    function WebsiteService($http) {
+    function WebsiteService() {
         var api = {
             createWebsite: createWebsite,
             findWebsitesByUser: findWebsitesByUser,
@@ -22,11 +22,11 @@
         };
         return api;
 
-
-        function createWebsite(userId, website) {
+        function createWebsite(userId, name, desc) {
             var newWebsite = {
-                _id: website._id,
-                name: website.name,
+                _id: (new Date()).getTime()+"",
+                name: name,
+                description: desc,
                 developerId: userId
             };
             websites.push(newWebsite);
@@ -34,15 +34,16 @@
         }
 
         function findWebsitesByUser(userId) {
+            var result = [];
             for(var i in websites) {
-                if(websites[i].developerId === userId) {
-                    return websites[i];
+                if(websites[i].userId === userId) {
+                    result.push(websites[i]);
                 }
             }
-            return null;
+            return result;
         }
 
-        function findWebsiteById(websiteId) { //???
+        function findWebsiteById(websiteId) {
             for(var i in websites) {
                 if(websites[i]._id === websiteId) {
                     return websites[i];
