@@ -1,12 +1,17 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController", NewWebsiteController);
+        .controller("WebsiteNewController", WebsiteNewController);
 
-    function NewWebsiteController($location, $routeParams, WebsiteService) {
+    function WebsiteNewController($location, $routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
+        vm.userId = $routeParams.uid;
         vm.createWebsite = createWebsite;
+
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+        }
+        init();
 
         function createWebsite(name, description) {
             WebsiteService.createWebsite(vm.userId, name, description);

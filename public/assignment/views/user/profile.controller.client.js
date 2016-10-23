@@ -7,16 +7,21 @@
         var vm = this;
         vm.updateUser = updateUser;
         vm.logout = logout;
+        var userId = $routeParams.uid;
 
-        var id = $rootScope._id;
+        function init(){
+            vm.user = UserService.findUserById(userId)
+        }
+        init();
 
         function logout() {
             $location.url("/login");
         }
 
         function updateUser(newUser) {
-            UserService.updateUser(id, newUser);
+            UserService.updateUser(userId, newUser);
         }
+
     }
 
 })();

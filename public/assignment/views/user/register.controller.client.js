@@ -5,8 +5,8 @@
 
     function RegisterController($location, UserService) {
         var vm = this;
-
         vm.register = register;
+
 
         function register(username, password, password2) {
             var date = new Date();

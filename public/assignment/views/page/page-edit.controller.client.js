@@ -1,28 +1,31 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("EditPageController", EditPageController);
+        .controller("PageEditController", PageEditController);
 
-    function EditPageController($routeParams, PageService) {
+    function PageEditController($routeParams, PageService, $location) {
         var vm = this;
-
-        vm.pageId = $routeParams.pageId;
-        vm.websiteId = $routeParams.websiteId;
+        vm.websiteId = $routeParams.wid;
+        vm.userId = $routeParams.uid;
+        var pageId = $routeParams.pid;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        function updatePage(page) {
-            PageService.updateWebsite(vm.pageId, page);
+        function init() {
+            vm.page = PageService.findPageById(pageId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+        }
+        init();
+
+        function updatePage(pageId, page) {
+            PageService.updatePage(pageId, page);
+            $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
         }
 
         function deletePage() {
-            PageService.deleteWebsite(vm.pageId);
+            PageService.deletePage(pageId);
+            $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
         }
-
-        function init() {
-            vm.user = PageService.findPageById(vm.pageId);
-        }
-        init();
     }
 
 })();

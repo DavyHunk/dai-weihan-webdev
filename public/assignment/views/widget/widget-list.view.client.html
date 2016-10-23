@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-list</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="page-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -21,7 +9,8 @@
             <b>Widgets</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="widget-chooser.html">
+            <a class="navbar-link"
+                    href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon black glyphicon-plus"></span>
             </a>
         </div>
@@ -30,149 +19,40 @@
 
 
 
-
-
-<!--<div class="container-fluid">-->
-    <!--<div class="jga-widget">-->
-            <!--<div>-->
-                <!--<div class="jpa-widget-tool">-->
-                    <!--<a href="widget-heading.html">-->
-                        <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-                <!--<h2>-->
-                    <!--Facebook Tweet Email ShareThis Amazon's Alexa to hire people to work on upcoming technologies-->
-                <!--</h2>-->
-            <!--</div>-->
-
-
-
-                <!--<div>-->
-                    <!--<div class="jpa-widget-tool">-->
-                        <!--<a href="widget-heading.html">-->
-                            <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                        <!--</a>-->
-                        <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                    <!--</div>-->
-                <!--<h3> In what has come as good news for job seekers in the technology space, Amazon Alexa is said to-->
-                    <!--have launched a massive recruitment drive.-->
-                <!--</h3>-->
-            <!--</div>-->
-
-            <!--<div>-->
-                    <!--<div class="jpa-widget-tool">-->
-                        <!--<a href="widget-image.html">-->
-                            <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                        <!--</a>-->
-                        <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                    <!--</div>-->
-                <!--<img src="http://my.jessup.edu/wp-content/uploads/2016/08/now_hiring_icon-01.png"-->
-                     <!--width="630px">-->
-            <!--</div>-->
-
-            <!--<div>-->
-                    <!--<div class="jpa-widget-tool">-->
-                        <!--<a href="widget-heading.html">-->
-                            <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                        <!--</a>-->
-                        <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                    <!--</div>-->
-                <!--The company’s job page shows that it's Echo and Alexa groups are looking to hire-->
-                    <!--<b class="red">about 400 people</b>.-->
-                <!--The jobs are open for various technical and non-technical positions like product managers, data-->
-                <!--engineers and machine learning scientists at diverse locations.-->
-                <!--Amazon will recruit at its headquarters in Seattle and many other U.S. cities including Tempe, Arizona;-->
-                <!--Cambridge, Massachusetts; and Sunnyvale, California.-->
-            <!--</div>-->
-
-
-        <!--<div>-->
-            <!--<div class="jpa-widget-tool">-->
-                <!--<a href="widget-heading.html">-->
-                    <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                <!--</a>-->
-                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-            <!--</div>-->
-        <!--<h2> First 2016 Presidential Debate Most Watched Ever, Surpasses 2012 Debates by 16+ Million Viewers-->
-        <!--</h2>-->
-    <!--</div>-->
-
-
-            <!--<div>-->
-                <!--<div class="jpa-widget-tool">-->
-                    <!--<a href="widget-youtube.html">-->
-                        <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-            <!--<iframe width="456"-->
-                    <!--height="340"-->
-                    <!--src="https://www.youtube.com/embed/855Am6ovK7s"-->
-                    <!--frameborder="0"-->
-                    <!--allowfullscreen></iframe>-->
-        <!--</div>-->
-
-    <!--<div class="bottom">-->
-
-            <!--<div class="jpa-widget-tool">-->
-                <!--<a href="widget-heading.html">-->
-                    <!--<span class="glyphicon top glyphicon-cog"></span>-->
-                <!--</a>-->
-                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-            <!--</div>-->
-        <!--More than <b class="red">84 million</b>people watched Monday's presidential debate between Hillary Clinton-->
-            <!--and Donald Trump,-->
-        <!--breaking the record of 80.6 million set back in 1980, when Jimmy Carter squared off against Ronald Reagan,-->
-        <!--according to Nielsen.-->
-        <!--The combined audience for the 13 networks that aired Monday's event topped that waterline for presidential-->
-        <!--debates.-->
-        <!--Other notable draws were the 1992 debates with Bill Clinton, George H.W. Bush and Ross Perot, which drew a-->
-        <!--peak audience of nearly 70 million viewers.-->
-        <!--Monday's debate audience put the presidential race's signature event in a league with the most-watched event-->
-        <!--on television.-->
-        <!--With more than 114 million viewers, Super Bowl XLIX's matchup last year between the New England Patriots and-->
-        <!--Seattle Seahawks was the most watched event in U.S. television history, according to Nielsen data.-->
-    <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
-
 <div class="row container-fluid">
    <div ng-switch="widget.widgetType"
-             ng-repeat="widget in model.widgets">
-            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-       <span class="glyphicon glyphicon-align-justify"></span>
-            <div ng-switch="widget.size" ng-switch-when="HEADER">
+        ng-repeat="widget in model.widgets">
+       <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
+           <span class="glyphicon glyphicon-cog"></span>
+       </a>
+       <span class="glyphicon glyphicon-align-justify pull-right"></span>
+
+       <div ng-switch="widget.size"
+            ng-switch-when="HEADER">
                 <h1 ng-switch-when="1">{{widget.text}}</h1>
                 <h2 ng-switch-when="2">{{widget.text}}</h2>
                 <h3 ng-switch-when="3">{{widget.text}}</h3>
                 <h4 ng-switch-when="4">{{widget.text}}</h4>
                 <h5 ng-switch-when="5">{{widget.text}}</h5>
                 <h6 ng-switch-when="6">{{widget.text}}</h6>
-            </div>
-            <div ng-switch-when="YOUTUBE">
+       </div>
+
+       <div ng-switch-when="YOUTUBE">
                 <iframe width="560" height="315"
-                        ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                        ng-src="{{model.checkSafeYoutubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div ng-switch-when="IMAGE">
-                image
-            </div>
-            <div ng-switch-when="HTML"
-                 ng-bind-html="model.checkSafeHtml(widget.text)">
-            </div>
+       </div>
+
+       <div ng-switch-when="IMAGE">
+           <img src="{{widget.url}}"
+                width="630px">
+       </div>
+
+       <div ng-switch-when="HTML"
+            ng-bind-html="model.checkSafeHtml(widget.text)">
+       </div>
         </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -192,17 +72,11 @@
             </p>
 
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
-        </div>
 
 </nav>
-
-
-</body>
-</html>
-

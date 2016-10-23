@@ -1,21 +1,28 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("EditWebsiteController", EditWebsiteController);
+        .controller("WebsiteEditController", WebsiteEditController);
 
-    function EditWebsiteController($location, $routeParams, WebsiteService) {
+    function WebsiteEditController($location, $routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.websiteId = $routeParams.websiteId;
+        vm.userId = $routeParams.uid;
+        var websiteId = $routeParams.wid;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(websiteId);
+        }
+        init();
+
         function updateWebsite(website) {
-            WebsiteService.updateWebsite(vm.websiteId, website);
+            WebsiteService.updateWebsite(websiteId, website);
+            $location.url("/user/"+vm.userId+"/website");
         }
 
         function deleteWebsite(websiteId) {
-            WebsiteService.deleteWebsite(vm.websiteId);
+            WebsiteService.deleteWebsite(websiteId);
             $location.url("/user/"+vm.userId+"/website");
         }
     }

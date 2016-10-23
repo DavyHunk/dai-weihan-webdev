@@ -1,66 +1,23 @@
-<!DO<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-list</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="page-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
         <a class="navbar-brand" href="#">
-            <b>Widgets</b>
+            <b>Edit Widget</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="widget-chooser.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon black glyphicon-plus"></span>
             </a>
         </div>
     </div>
 </nav>
 
+<div ng-include ="'views/widget/widget-'+ model.widget.widgetType +'.view.client.html'"></div>
 
-<!--<div ng-switch="widget.widgetType">-->
-    <!--<div ng-switch-when="HEADING">-->
-        <!--<ng-include src="'widget-heading.view.client.html'">-->
-    <!--</div>-->
-    <!--<div ng-switch-when="IMAGE">-->
-        <!--<ng-include src="'widget-image.view.client.html'">-->
-    <!--</div>-->
-    <!--<div ng-switch-when="YOUTUBE">-->
-        <!--<ng-include src="'widget-youtube.view.client.html'">-->
-    <!--</div>-->
-<!--</div>-->
-
-    <!--<div style="padding-left: 30px;padding-right: 0px;">-->
-        <!--<form>-->
-            <!--{{model.widget}}-->
-            <!--<div ng-include="'views/widget/widget-'+model.widget.widgetType+'-editor.html'"></div>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
-<div class="container">
-
-    URL
-    <input ng-model="model.widget.url" class="form-control"/>
-
-    <form action="/api/uploads"  method="post" enctype="multipart/form-data">
-        <input  name="myFile"   type="file" class="form-control"/>
-        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
-        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
-        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
-    </form>
-
-</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
@@ -78,7 +35,7 @@
             </p>
 
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -87,7 +44,3 @@
     </div>
 
 </nav>
-
-</body>
-</html>
-

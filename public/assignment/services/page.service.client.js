@@ -22,9 +22,10 @@
 
         function createPage(websiteId, page) {
             var newPage = {
-                _id: page._id,
+                _id: (new Date()).getTime() + "",
                 name: page.name,
-                websiteId: websiteId
+                websiteId: websiteId,
+                description: page.description
             };
             pages.push(newPage);
             return newPage;
@@ -54,14 +55,9 @@
 
 
         function updatePage(pageId, page) {
-            var newPage = {
-                _id: pageId,
-                name: page.name,
-                websiteId: websiteId
-            };
             for(var i in pages) {
                 if(pages[i]._id === pageId) {
-                    pages[i] = newPage;
+                    pages[i] = page;
                     return true;
                 }
             }

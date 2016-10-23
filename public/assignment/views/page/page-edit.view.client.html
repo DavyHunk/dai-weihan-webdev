@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>page-edit</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="page-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -22,15 +9,12 @@
             <b>Edit Page</b>
         </a>
         <div class="navbar-text pull-right">
-            <a ng-click="model.updatePage(page)">
+            <a ng-click="model.updatePage(model.page)">
                 <span class="glyphicon black glyphicon-ok"></span>
             </a>
         </div>
     </div>
 </nav>
-
-
-
 
 
 
@@ -61,23 +45,14 @@
 
 
 
-
-
-
-
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
-

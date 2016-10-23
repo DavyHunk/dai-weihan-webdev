@@ -36,7 +36,7 @@
         function findWebsitesByUser(userId) {
             var result = [];
             for(var i in websites) {
-                if(websites[i].userId === userId) {
+                if(websites[i].developerId === userId) {
                     result.push(websites[i]);
                 }
             }

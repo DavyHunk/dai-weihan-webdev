@@ -7,13 +7,14 @@
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
         { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "http://lorempixel.com/400/200/"},
-        { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/8f/17/e1/8f17e19c5d4c3531bb7ae3f6b0e85955.jpg"},
+        { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>html ipsum</p>"},
         { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
         { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
             "url": "https://youtu.be/AM2Ivdi9c4E" },
-        { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-    ];
+        { "_id": "789", "widgetType": "HTML", "pageId": "321",
+            "text": '<p>Presidential candidate Donald Trump has a penchant for lawsuits, much like <a href="https://gawker.com/gawker-was-murdered-by-gaslight-1785456581" target="_blank" rel="noopener">another Republican convention speaker</a>. Today Trump gave a speech in Gettysburg, where he said he is fighting “the power structure,” and that his administration would not approve of AT&amp;T trying to buy Time Warner “and thus, CNN.”<span class="read-more-placeholder"></span><span class="readmore-core-decorated"></span></p>'}
+            ];
 
     function WidgetService($http) {
         var api = {
@@ -21,16 +22,18 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            createWidgetHeader:createWidgetHeader,
+            createWidgetImage:createWidgetImage,
+            createWidgetYouTube:createWidgetYouTube
         };
         return api;
 
 
-        function createWidget(pageId, widget) { //???
+        function createWidget(pageId, widget) {
             var newWidget = {
-                _id: widget._id,
-                widgetType: widget.widgetType,
-                pageId: pageId
+                _id: (new Date()).getTime()+"",
+                pageId: pageId,
             };
             widgets.push(newWidget);
             return newWidget;
@@ -63,7 +66,11 @@
             var newWidget = {
                 _id: widgetId,
                 widgetType: widget.widgetType,
-                pageId: widget.pageId
+                pageId: widget.pageId,
+                text: widget.text,
+                size: widget.size,
+                url: widget.url,
+                width: widget.width
             };
             for(var i in widgets) {
                 if(widgets[i]._id === widgetId) {
@@ -71,7 +78,7 @@
                     return true;
                 }
             }
-            return false;
+            return true;
         }
 
 
@@ -85,6 +92,52 @@
             return false;
         }
 
+        function createWidgetHeader(widget) {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: "HEADER",
+                pageId: widget.pageId,
+                text: widget.text,
+                size: widget.size
+            };
+            for(var i in widgets) {
+                if(widgets[i]._id === widget._id) {
+                    widgets[i]= newWidget;
+                    return newWidget;
+                }
+            }
+        }
 
+        function createWidgetImage(widget) {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: "IMAGE",
+                pageId: widget.pageId,
+                width: widget.width,
+                url: widget.url
+            };
+            for(var i in widgets) {
+                if(widgets[i]._id === widget._id) {
+                    widgets[i]= newWidget;
+                    return newWidget;
+                }
+            }
+        }
+
+        function createWidgetYouTube(widget) {
+            var newWidget = {
+                _id: widget._id,
+                widgetType: "YOUTUBE",
+                pageId: widget.pageId,
+                width: widget.width,
+                url: widget.url
+            };
+            for(var i in widgets) {
+                if(widgets[i]._id === widget._id) {
+                    widgets[i]= newWidget;
+                    return newWidget;
+                }
+            }
+        }
     }
 })();
