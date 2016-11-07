@@ -1,50 +1,66 @@
-//
-// (function(){
-//     angular
-//         .module("WebAppMaker")
-//         .controller("WidgetListController", WidgetListController)
-//         .controller("NewWidgetController", NewWidgetController)
-//         .controller("EditWidgetController", EditWidgetController)
-//
-//     function WidgetListController() {
-//         var vm = this;
-//     }
-//
-//     function NewWidgetController() {
-//         var vm = this;
-//     }
-//
-//     function EditWidgetController() {
-//         var vm = this;
-//     }
-//     function EditWidgetController($routeParams, WidgetService) {
-//         var vm = this;
-//         var vm.widgetId = $routeParams["widgetId"];
-//         function init() {
-//             vm.user = WidgetService.findWidgetById(vm.widgetId);
-//         }
-//         init();
-//     }
-//
-// })();
 (function(){
     angular
         .module("WebAppMaker")
         .controller("WidgetEditController", WidgetEditController);
 
-    function WidgetEditController($routeParams, WidgetService) {
+
+    function WidgetEditController($routeParams, WidgetService, $location) {
         var vm = this;
-        var widgetId = $routeParams.widgetId;
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
+        var widgetId = $routeParams.wgid;
+        vm.deleteWidget = deleteWidget;
+        vm.updateWidget = updateWidget;
+
+
 
         function init() {
             WidgetService
                 .findWidgetById(widgetId)
-                .then(
-                    function(response){
-                        vm.widget = response.data;
-                    }
-                )
+                .success(function (widget) {
+                    vm.widget = widget;
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+            //vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            //vm.website = WebsiteService.findWebsiteById(vm.userId, websiteId);
         }
         init();
+
+
+        function deleteWidget(){
+            WidgetService
+                .deleteWidget(widgetId)
+                .success(function(){
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+
+                        "/page/"+vm.pageId+"/widget");
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+            // WidgetService.deleteWidget(widgetId);
+            // $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+
+            //     "/page/"+vm.pageId+"/widget");
+        }
+
+        function updateWidget(widget){
+            WidgetService
+                .updateWidget(widgetId, widget)
+                .success(function(){
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+
+                        "/page/"+vm.pageId+"/widget");
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+            // WidgetService.updateWidget(widgetId, widget);
+            // $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+
+            //     "/page/"+vm.pageId+"/widget");
+        }
     }
+
+
+
 })();

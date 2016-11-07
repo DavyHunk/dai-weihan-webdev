@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-heading</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="navbar-link">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
         <a class="navbar-brand" href="#">
-            <b>Widget Edit</b>
+            <b>Widget Header Edit</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="widget-list.html">
+            <a ng-click="model.updateWidget(model.widget)">
                 <span class="glyphicon black glyphicon-ok"></span>
             </a>
         </div>
@@ -32,13 +20,12 @@
 
 
 
-
 <div class="container-fluid">
-
     <form>
         <div class="form-group">
             <label for="widget name">Name</label>
-            <input type="text"
+            <input ng-model="model.widget.name"
+                   type="text"
                    class="form-control"
                    id="widget name"
                     placeholder="Name">
@@ -46,7 +33,8 @@
 
         <div class="form-group">
             <label for="widget text">Text</label>
-            <input type="text"
+            <input ng-model="model.widget.text"
+                   type="text"
                    class="form-control"
                    id="widget text"
                    placeholder="Text">
@@ -54,7 +42,8 @@
 
         <div class="form-group">
             <label for="widget size">Size</label>
-            <input type="text"
+            <input ng-model="model.widget.size"
+                   type="number"
                    class="form-control"
                    id="widget size"
                    placeholder="Size">
@@ -62,13 +51,8 @@
     </form>
 
     <a class="btn btn-danger  btn-block"
-       href="widget-list.html">Delete</a>
+       ng-click="model.deleteWidget()">Delete</a>
 </div>
-
-
-
-
-
 
 
 
@@ -77,14 +61,10 @@
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
-
