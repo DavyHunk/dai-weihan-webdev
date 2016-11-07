@@ -1,81 +1,56 @@
-//
-// (function(){
-//     angular
-//         .module("WebAppMaker")
-//         .controller("ProfileController", ProfileController);
-//
-//
-//     function ProfileController($routeParams, UserService) {
-//         var vm = this;
-//         vm.userId = $routeParams["userId"];
-//         function init() {
-//             vm.user = UserService.findUserById(vm.userId);
-//         }
-//         init();
-//     }
-//
-// })();
-
 (function(){
     angular
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, $routeParams, UserService, $rootScope) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
-        vm.unregister = unregister;
         vm.logout = logout;
+        vm.deleteUser = deleteUser;
+        vm.userId = $routeParams.uid;
 
-        var id = $rootScope.currentUser._id;
-
-        function init() {
+        function init(){
             UserService
-                .findUserById(id)
-                .then(function(response){
-                    vm.user = response.data;
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    if(user != '0') {
+                        vm.user = user;
+                    }
+                })
+                .error (function(){
+                    vm.error = "error";
                 });
         }
         init();
 
         function logout() {
-            UserService
-                .logout()
-                .then(
-                    function(response){
-                        $location.url("/login");
-                    },
-                    function() {
-                        $location.url("/login");
-                    }
-                )
+            $location.url("/login");
         }
 
-        function unregister() {
+        function updateUser() {
             UserService
-                .deleteUser(id)
-                .then(
-                    function(){
-                        $location.url("/login");
-                    },
-                    function() {
-                        vm.error = "Unable to remove user"
-                    }
-                );
+                .updateUser(vm.user)
+                .success(function(){
+
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
         }
 
-        function updateUser(newUser) {
+        function deleteUser() {
             UserService
-                .updateUser(id, newUser)
-                .then(
-                    function(response) {
-                        vm.success = "Updated successfully";
-                    },
-                    function(error) {
-                        vm.error = "Unable to update user"
-                    }
-                );
+                .deleteUser(vm.user._id)
+                .success(function(){
+                    $location.url("/login");
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+
         }
+
     }
 
 })();

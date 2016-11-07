@@ -1,33 +1,3 @@
-//
-// (function(){
-//     angular
-//         .module("WebAppMaker")
-//         .controller("WidgetListController", WidgetListController)
-//         .controller("NewWidgetController", NewWidgetController)
-//         .controller("EditWidgetController", EditWidgetController)
-//
-//     function WidgetListController() {
-//         var vm = this;
-//     }
-//
-//     function NewWidgetController() {
-//         var vm = this;
-//     }
-//
-//     function EditWidgetController() {
-//         var vm = this;
-//     }
-//     function EditWidgetController($routeParams, WidgetService) {
-//         var vm = this;
-//         var vm.widgetId = $routeParams["widgetId"];
-//         function init() {
-//             vm.user = WidgetService.findWidgetById(vm.widgetId);
-//         }
-//         init();
-//     }
-//
-// })();
-
 (function(){
     angular
         .module("WebAppMaker")
@@ -35,26 +5,58 @@
 
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
-        var pageId = $routeParams.pageId;
-        vm.getSafeHtml = getSafeHtml;
-        vm.getSafeUrl = getSafeUrl;
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
+        var widgetId = $routeParams.wgid;
+        vm.checkSafeHtml = checkSafeHtml;
+        vm.checkSafeYoutubeUrl = checkSafeYoutubeUrl;
+        vm.getButtonClass = getButtonClass;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPageId(pageId);
-            $(".container")
-                .sortable({axis: "y"});
+            WidgetService
+                .findAllWidgetsForPage(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
         }
         init();
 
-        function getSafeHtml(widget) {
-            return $sce.trustAsHtml(widget.text);
+        function sortWidget(start, end) {
+            WidgetService
+                .sortWidget(vm.pageId, start, end)
+                .then(
+                    function (response) {
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                )
+                .error (function(){
+                    vm.error = "error";
+                });
         }
 
-        function getSafeUrl(widget) {
-            var urlParts = widget.url.split("/");
-            var id = urlParts[urlParts.length - 1];
-            var url = "https://www.youtube.com/embed/" + id;
-            return $sce.trustAsResourceUrl(url);
+        function checkSafeHtml(html) {
+            return $sce.trustAsHtml(html);
         }
+
+        function checkSafeYoutubeUrl(url) {
+            var urlParts = url.split('/');
+            var id = urlParts[urlParts.length - 1];
+            var urls = "https://www.youtube.com/embed/" + id;
+            return $sce.trustAsResourceUrl(urls);
+        }
+
+        function getButtonClass(style) {
+            if(!style) {
+                style = "default";
+            }
+            return "btn-"+style.toLowerCase();
+        }
+
     }
 })();
