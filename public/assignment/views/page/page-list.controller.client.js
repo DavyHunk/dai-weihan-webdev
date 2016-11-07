@@ -7,6 +7,7 @@
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
+<<<<<<< HEAD
 
         function init() {
             PageService
@@ -19,6 +20,13 @@
                 .error (function(){
                     vm.error = "error";
                 });
+=======
+        var pageId = $routeParams.pid;
+
+        function init() {
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            vm.page =PageService.findPageById(pageId);
+>>>>>>> origin/master
         }
         init();
     }

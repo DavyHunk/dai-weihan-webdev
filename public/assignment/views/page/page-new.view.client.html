@@ -1,5 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+<<<<<<< HEAD
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text left pull-left">
                 <a href="#/user/{{model.userId}}/website">
@@ -28,6 +29,19 @@
             </div>
             <a class="navbar-brand" href="#">
                 <b>New Page</b>
+=======
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                <span class="glyphicon black glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="navbar-brand" href="#">
+            <b>New Page</b>
+        </a>
+        <div class="navbar-text pull-right">
+            <a ng-click="model.createPage(model.page)">
+                <span class="glyphicon black glyphicon-ok"></span>
+>>>>>>> origin/master
             </a>
             <div class="navbar-text pull-right">
                 <a ng-click="model.createPage(model.page)">
@@ -41,6 +55,7 @@
 
 
 
+<<<<<<< HEAD
 <div class="row container-fluid">
     <div class="col-xs-4 hidden-xs">
         <li ng-repeat="page in model.pages"
@@ -59,6 +74,11 @@
 
     <div class="col-xs-12 col-sm-8">
         <form>
+=======
+<div class="container-fluid">
+
+    <form>
+>>>>>>> origin/master
         <div class="form-group">
             <label for="page-name">Name</label>
             <input ng-model="model.page.name"
@@ -78,9 +98,6 @@
     </form>
 </div>
     </div>
-
-
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

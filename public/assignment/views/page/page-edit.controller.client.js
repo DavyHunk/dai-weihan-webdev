@@ -12,6 +12,7 @@
         vm.deletePage = deletePage;
 
         function init() {
+<<<<<<< HEAD
             PageService
                 .findAllPagesForWebsite(vm.websiteId)
                 .success(function (pages) {
@@ -29,9 +30,20 @@
                 .error (function(){
                     vm.error = "error";
                 });
+=======
+            vm.page = PageService.findPageById(pageId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
         }
         init();
 
+        function updatePage(pageId, page) {
+            PageService.updatePage(pageId, page);
+            $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
+>>>>>>> origin/master
+        }
+        init();
+
+<<<<<<< HEAD
         function updatePage(page) {
             PageService
                 .updatePage(pageId, page)
@@ -54,6 +66,12 @@
                     vm.error = "error";
                 });
             }
+=======
+        function deletePage() {
+            PageService.deletePage(pageId);
+            $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
+        }
+>>>>>>> origin/master
     }
 
 })();

@@ -5,6 +5,7 @@
 
     function WebsiteNewController($location, $routeParams, WebsiteService) {
         var vm = this;
+<<<<<<< HEAD
         vm.userId = parseInt($routeParams.uid);
         vm.createWebsite = createWebsite;
 
@@ -30,6 +31,19 @@
                 .error (function(){
                     vm.error = "error";
                 });
+=======
+        vm.userId = $routeParams.uid;
+        vm.createWebsite = createWebsite;
+
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+        }
+        init();
+
+        function createWebsite(name, description) {
+            WebsiteService.createWebsite(vm.userId, name, description);
+            $location.url("/user/"+vm.userId+"/website");
+>>>>>>> origin/master
         }
     }
 })();

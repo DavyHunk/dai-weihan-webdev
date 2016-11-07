@@ -7,6 +7,7 @@
         var vm = this;
         vm.updateUser = updateUser;
         vm.logout = logout;
+<<<<<<< HEAD
         vm.deleteUser = deleteUser;
         vm.userId = $routeParams.uid;
 
@@ -21,6 +22,12 @@
                 .error (function(){
                     vm.error = "error";
                 });
+=======
+        var userId = $routeParams.uid;
+
+        function init(){
+            vm.user = UserService.findUserById(userId)
+>>>>>>> origin/master
         }
         init();
 
@@ -28,6 +35,7 @@
             $location.url("/login");
         }
 
+<<<<<<< HEAD
         function updateUser() {
             UserService
                 .updateUser(vm.user)
@@ -49,6 +57,10 @@
                     vm.error = "error";
                 });
 
+=======
+        function updateUser(newUser) {
+            UserService.updateUser(userId, newUser);
+>>>>>>> origin/master
         }
 
     }

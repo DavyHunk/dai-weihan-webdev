@@ -10,6 +10,7 @@
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
+<<<<<<< HEAD
 
 
 
@@ -63,6 +64,22 @@
                 });
             // WebsiteService.deleteWebsite(websiteId);
             // $location.url("/user/"+vm.userId+"/website");
+=======
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(websiteId);
+        }
+        init();
+
+        function updateWebsite(website) {
+            WebsiteService.updateWebsite(websiteId, website);
+            $location.url("/user/"+vm.userId+"/website");
+        }
+
+        function deleteWebsite(websiteId) {
+            WebsiteService.deleteWebsite(websiteId);
+            $location.url("/user/"+vm.userId+"/website");
+>>>>>>> origin/master
         }
     }
 })();

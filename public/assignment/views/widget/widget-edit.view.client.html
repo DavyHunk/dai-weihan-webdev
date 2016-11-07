@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
@@ -341,3 +342,51 @@
 
 
 </nav>
+=======
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon black glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="navbar-brand" href="#">
+            <b>Edit Widget</b>
+        </a>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                <span class="glyphicon black glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div ng-include ="'views/widget/widget-'+ model.widget.widgetType +'.view.client.html'"></div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-bottom">
+            <p class="navbar-text pull-left">
+                <a href="#">
+                    <span class="glyphicon black glyphicon-play"></span>
+                </a>
+            </p>
+
+            <p class="navbar-brand">
+                <a href="#">
+                    <span class="glyphicon black glyphicon-eye-open"></span>
+                </a>
+            </p>
+
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+    </div>
+
+</nav>
+>>>>>>> origin/master

@@ -11,6 +11,7 @@
         vm.createPage = createPage;
 
         function init() {
+<<<<<<< HEAD
             PageService
                 .findAllPagesForWebsite(vm.websiteId)
                 .success(function (pages) {
@@ -34,6 +35,16 @@
                 });
             // PageService.createPage(vm.websiteId, page);
             // $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
+=======
+            vm.page = PageService.findPageById(pageId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+        }
+        init();
+
+        function createPage(page){
+            PageService.createPage(vm.websiteId, page);
+            $location.url("/user/" + vm.userId+"/website/" + vm.websiteId + "/page");
+>>>>>>> origin/master
 
         }
     }
