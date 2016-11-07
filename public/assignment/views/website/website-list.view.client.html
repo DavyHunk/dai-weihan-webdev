@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top website">
     <div class="container-fluid">
             <div class="navbar-text pull-left">
-                <a href="#/user/{{model.developerId}}">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon header glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -20,19 +20,16 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-        <li ng-repeat="website in model.websites"
-            class="list-group-item">
-            <a href="#/user/{{website.developerId}}/website/{{website._id}}/page"
-               class="text">
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
                 {{website.name}}
             </a>
-            <a href="#/user/{{website._user}}/website/{{website._id}}"
+            <a href="#/user/{{model.userId}}/website/{{website._id}}"
                class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
     </ul>
-
 </div>
 
 

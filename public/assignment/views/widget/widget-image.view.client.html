@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-image</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
         <a class="navbar-brand" href="#">
-            <b>Widget Edit</b>
+            <b>Widget Image Edit</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="widget-list.html">
+            <a ng-click="model.updateWidget(model.widget)">
                 <span class="glyphicon black glyphicon-ok"></span>
             </a>
         </div>
@@ -89,7 +76,7 @@
     <a class="btn btn-primary  btn-block"
        href="#">Upload Image</a>
     <a class="btn btn-danger  btn-block"
-       href="widget-list.html">Delete</a>
+       ng-click="model.deleteWidget()">Delete</a>
 
 </div>
 
@@ -103,14 +90,10 @@
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
-

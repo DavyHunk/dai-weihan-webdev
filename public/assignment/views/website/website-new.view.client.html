@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-xs-4 hidden-xs">
             <div class="navbar-text left pull-left">
-                <a href="#/user/{{model.userId}}/website">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon header glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -12,7 +12,7 @@
                 </a>
             </div>
             <div class="navbar-text right-middle pull-right">
-                <a href="#">
+                <a href="#/user/{{model.userId}}/website">
                     <span class="glyphicon header glyphicon-plus"></span>
                 </a>
             </div>
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="navbar-text right pull-right">
-                <a ng-click="model.createWebsite(model.website.name, model.website.description)"
+                <a ng-click="model.createWebsite(model.website)"
                    class="navbar-link">
                     <span class="glyphicon header glyphicon-ok"></span>
                 </a>
@@ -49,14 +49,11 @@
 
     <div class="col-xs-4 hidden-xs">
         <ul class="list-group">
-            <li ng-repeat="website in model.websites"
-                class="list-group-item">
-                <a href="#/user/{{website._user}}/website/{{website._id}}/page"
-                   class="text">
+            <li ng-repeat="website in model.websites" class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
                     {{website.name}}
                 </a>
-                <a href="#/user/{{website._user}}/website/{{website._id}}"
-                   class="pull-right">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
@@ -95,7 +92,8 @@
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}" class="nav navbar-nav navbar-right">
+                <a href="#/user/{{model.userId}}"
+                   class="nav navbar-nav navbar-right">
                     <span class="glyphicon footer glyphicon-user"></span>
                 </a>
             </p>
