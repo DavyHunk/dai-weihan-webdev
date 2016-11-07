@@ -19,19 +19,41 @@
 
 
 
+<<<<<<< HEAD
 <div class="row container-fluid wam-widgets" wam-sortable>
    <div ng-switch="widget.widgetType"
         class="wam-widget  wam-sortable-callback='model.sortWidget(start, end)'"
+=======
+<<<<<<< HEAD
+<div class="row container-fluid wam-widgets" wam-sortable>
+   <div ng-switch="widget.widgetType"
+        class="wam-widget  wam-sortable-callback='model.sortWidget(start, end)'"
+=======
+<div class="row container-fluid">
+   <div ng-switch="widget.widgetType"
+>>>>>>> origin/master
+>>>>>>> origin/master
         ng-repeat="widget in model.widgets">
        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
            <span class="glyphicon glyphicon-cog"></span>
        </a>
        <span class="glyphicon glyphicon-align-justify pull-right"></span>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
        <div ng-switch='widget.widgetType'>
        <div ng-switch="widget.size"
             ng-switch-when='HEADER'>
+<<<<<<< HEAD
+=======
+=======
+       <div ng-switch="widget.size"
+            ng-switch-when="HEADER">
+>>>>>>> origin/master
+>>>>>>> origin/master
                 <h1 ng-switch-when="1">{{widget.text}}</h1>
                 <h2 ng-switch-when="2">{{widget.text}}</h2>
                 <h3 ng-switch-when="3">{{widget.text}}</h3>
@@ -40,6 +62,10 @@
                 <h6 ng-switch-when="6">{{widget.text}}</h6>
        </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
            <div ng-switch-when="REPEATER">
                <div ng-bind-html="model.checkSafeHtml(widget.template)">
                </div>
@@ -96,22 +122,48 @@
 
 
        <div ng-switch-when='YOUTUBE'>
+<<<<<<< HEAD
+=======
+=======
+       <div ng-switch-when="YOUTUBE">
+>>>>>>> origin/master
+>>>>>>> origin/master
                 <iframe width="560" height="315"
                         ng-src="{{model.checkSafeYoutubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
        </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
        <div ng-switch-when='IMAGE'>
            <img ng-src="{{widget.url}}"
                 width="{{widget.width}}">
 
+<<<<<<< HEAD
+=======
+=======
+
+       <div ng-switch-when="IMAGE">
+           <img src="{{widget.url}}"
+                width="630px">
+>>>>>>> origin/master
+>>>>>>> origin/master
        </div>
 
        <div ng-switch-when="HTML"
             ng-bind-html="model.checkSafeHtml(widget.text)">
        </div>
         </div>
+<<<<<<< HEAD
        </div>
+=======
+<<<<<<< HEAD
+       </div>
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 </div>
 
 

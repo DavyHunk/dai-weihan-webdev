@@ -10,6 +10,10 @@
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
 
 
@@ -34,6 +38,7 @@
 
             //vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
             //vm.website = WebsiteService.findWebsiteById(vm.userId, websiteId);
+<<<<<<< HEAD
         }
         init();
 
@@ -63,6 +68,53 @@
                 });
             // WebsiteService.deleteWebsite(websiteId);
             // $location.url("/user/"+vm.userId+"/website");
+=======
+        }
+        init();
+
+
+
+        function updateWebsite(website) {
+            WebsiteService
+                .updateWebsite(websiteId, website)
+                .success(function(){
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+            // WebsiteService.updateWebsite(websiteId, website);
+            // $location.url("/user/"+vm.userId+"/website");
+        }
+
+        function deleteWebsite(websiteId) {
+            WebsiteService
+                .deleteWebsite(websiteId)
+                .success(function(){
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+            // WebsiteService.deleteWebsite(websiteId);
+            // $location.url("/user/"+vm.userId+"/website");
+=======
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(websiteId);
+        }
+        init();
+
+        function updateWebsite(website) {
+            WebsiteService.updateWebsite(websiteId, website);
+            $location.url("/user/"+vm.userId+"/website");
+        }
+
+        function deleteWebsite(websiteId) {
+            WebsiteService.deleteWebsite(websiteId);
+            $location.url("/user/"+vm.userId+"/website");
+>>>>>>> origin/master
+>>>>>>> origin/master
         }
     }
 })();
