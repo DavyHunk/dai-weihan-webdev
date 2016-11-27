@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-chooser</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
           <span class="glyphicon black glyphicon-chevron-left">
           </span>
                 </a>
@@ -28,69 +17,74 @@
 
 
 
-
-
-
-
 <div class="container-fluid">
-
     <ul class="list-group">
         <li class="list-group-item no_border">
-            <a href="widget-heading.html" class="text">
+            <a ng-click="model.createWidget('HEADING',model.widget)"
+               class="text">
                 Header
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('LABEL',model.widget)"
+               class="text">
                 Label
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('HTML',model.widget)"
+               class="text">
                 HTML
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('TEXT',model.widget)"
+               class="text">
                 Text Input
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('LINK',model.widget)"
+               class="text">
                 Link
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('BUTTON',model.widget)"
+               class="text">
                 Button
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="widget-image.html" class="text">
+            <a ng-click="model.createWidget('IMAGE',model.widget)"
+               class="text">
                 Image
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="widget-youtube.html" class="text">
+            <a ng-click="model.createWidget('YOUTUBE',model.widget)"
+               class="text">
                 YouTube
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('TABLE',model.widget)"
+               class="text">
                 Data Table
             </a>
         </li>
 
         <li class="list-group-item no_border">
-            <a href="#" class="text">
+            <a ng-click="model.createWidget('REPEATER',model.widget)"
+               class="text">
                 Repeater
             </a>
         </li>
@@ -100,22 +94,14 @@
 
 
 
-
-
-
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
-

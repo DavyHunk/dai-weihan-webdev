@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>website-list</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body class="website">
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top website">
     <div class="container-fluid">
             <div class="navbar-text pull-left">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon header glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -21,7 +9,7 @@
                 <b>Websites</b>
             </a>
             <div class="navbar-text pull-right">
-                <a href="website-new.html">
+                <a href="#/user/{{model.userId}}/website/new">
                     <span class="glyphicon header glyphicon-plus"></span>
                 </a>
             </div>
@@ -30,46 +18,18 @@
 
 
 
-<div ng-repeat="website in model.websites" class="container-fluid">
-    {{website.name}}
+<div class="container-fluid">
     <ul class="list-group">
-        <li class="list-group-item no_border">
-            <a href="page-list.html" class="text">
-                Address Book App
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                {{website.name}}
             </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="page-list.html" class="text">
-                Blogger
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="page-list.html" class="text">
-                Blogging App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-
-        <li class="list-group-item no_border">
-            <a href="page-list.html" class="text">
-                Script Testing App
-            </a>
-            <a href="website-edit.html" class="pull-right">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}"
+               class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
     </ul>
-
 </div>
 
 
@@ -79,14 +39,10 @@
     <div class="container-fluid">
         <div class="navbar-bottom">
                 <p class="navbar-text pull-right">
-                <a href="profile.html" class="nav navbar-nav navbar-right">
+                <a href="#/user/{{model.userId}}" class="nav navbar-nav navbar-right">
                     <span class="glyphicon footer glyphicon-user"></span>
                 </a>
                 </p>
     </div>
         </div>
 </nav>
-
-</body>
-</html>
-
