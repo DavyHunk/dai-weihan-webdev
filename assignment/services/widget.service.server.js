@@ -119,11 +119,17 @@ module.exports = function (app, model) {
             .widgetModel
             .findWidgetById(widgetId)
             .then(
-                function(widget) {
-                    res.json(widget);
+                function (widget) {
+                    if(widget){
+                        res.send(widget);
+                    }
+                    else{
+                        res.send('0');
+                    }
+
                 },
-                function(error) {
-                    res.statusCode(400).send(error);
+                function (error) {
+                    res.sendStatus(400).send(error);
                 }
             );
     }
@@ -152,12 +158,17 @@ module.exports = function (app, model) {
             .widgetModel
             .findAllWidgetsForPage(pid)
             .then(
-                function(widgets) {
-                    res.json(widgets);
+                function (widgets) {
+                    if(widgets){
+                        res.send(widgets);
+                    }
+                    else{
+                        res.send('0');
+                    }
 
                 },
-                function(error) {
-                    res.status(404).send(error);
+                function (error) {
+                    res.sendStatus(400).send(error);
                 }
             );
     }
