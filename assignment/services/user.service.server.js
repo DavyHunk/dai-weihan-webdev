@@ -1,10 +1,4 @@
 module.exports = function (app, model) {
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
 
     app.post("/api/user", createUser);
     app.get('/api/user', findUser);
@@ -13,7 +7,7 @@ module.exports = function (app, model) {
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
-
+    
 
     function deleteUser(req, res){
         var userId = req.params.uid;
@@ -35,8 +29,6 @@ module.exports = function (app, model) {
 
     function createUser(req, res){
         var user = req.body;
-        //user._id = ""+(new Date()).getTime();
-        //users.push(user);
         model
             .userModel
             .createUser(user)
@@ -48,7 +40,6 @@ module.exports = function (app, model) {
                     res.sendStatus(400).send(error);
                 }
             );
-        //res.send(user);
     }
 
     function findUser(req, res) {
@@ -70,9 +61,12 @@ module.exports = function (app, model) {
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    // console.log(req.session);
-                    // req.session.currentUser = user;
-                    res.json(user);
+                    if(user){
+                        res.json(user);
+                    }
+                    else{
+                        res.send('0');
+                    }
                 },
                 function(err) {
                     res.statusCode(400).send(err);
@@ -87,9 +81,12 @@ module.exports = function (app, model) {
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
-                    // console.log(req.session);
-                    // req.session.currentUser = user;
-                    res.json(user);
+                    if(user){
+                        res.json(user);
+                    }
+                    else{
+                        res.send('0');
+                    }
                 },
                 function(err) {
                     res.statusCode(400).send(err);
