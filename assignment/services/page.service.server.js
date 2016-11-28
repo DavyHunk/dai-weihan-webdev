@@ -55,11 +55,17 @@ module.exports = function (app, model) {
             .pageModel
             .findPageById(pageId)
             .then(
-                function(page) {
-                    res.json(page);
+                function (page) {
+                    if(page){
+                        res.send(page);
+                    }
+                    else{
+                        res.send('0');
+                    }
+
                 },
-                function(error) {
-                    res.statusCode(400).send(error);
+                function (error) {
+                    res.sendStatus(400).send(error);
                 }
             );
     }
@@ -88,11 +94,17 @@ module.exports = function (app, model) {
             .pageModel
             .findAllPagesForWebsite(wid)
             .then(
-                function(pages) {
-                    res.json(pages);
+                function (pages) {
+                    if(pages){
+                        res.send(pages);
+                    }
+                    else{
+                        res.send('0');
+                    }
+
                 },
-                function(error) {
-                    res.statusCode(400).send(error);
+                function (error) {
+                    res.sendStatus(400).send(error);
                 }
             );
     }
