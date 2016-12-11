@@ -1,33 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-
-<body>
-
-    <div class="container">
+<div class="container">
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+<form name="loginForm" id="loginForm" novalidate>
         <h1>Login</h1>
+<div>
         <input ng-model="model.user.username"
-                type="text"
+               type="text"
+               autocorrect="off"
+               autocapitalize="off"
+               required
+               name="username"
                class="form-control"
                placeholder="Username"/>
-<<<<<<< HEAD:public/assignment/views/user/login.view.client.html
+</div>
+    <span ng-show="loginForm.$submitted && loginForm.username.$invalid">
+        Username is required
+    </span>
+
+    <div>
         <input ng-model="model.user.password"
-                type="password"
-=======
-        <input type="password"
->>>>>>> origin/master:public/assignment/login.html
+               required
+               name="password"
+               type="password"
                class="form-control"
                placeholder="Password"/>
-        <a class="btn btn-primary btn-block"
-           href="#/profile">Login</a>
+    </div>
+    <span ng-show="loginForm.$submitted && loginForm.password.$invalid">
+        Password is required
+    </span>
+
+
+
+        <button ng-click="model.login(model.user.username, model.user.password)"
+                form = "loginForm"
+                type="submit"
+                class="btn btn-primary btn-block">
+            Login
+        </button>
+</form>
+
         <a class="btn btn-success btn-block"
            href="#/register">Register</a>
-    </div>
 
-</body>
-</html>
+    <a href="/auth/google" class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
+        Google
+    </a>
+
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+    </div>

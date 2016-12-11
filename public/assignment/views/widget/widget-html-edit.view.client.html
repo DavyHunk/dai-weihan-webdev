@@ -1,0 +1,13 @@
+
+<div class="form-group">
+    <label for="widgetHTMLHead">HTML</label>
+    <div class="form-group">
+        <label for="widgetHTMLText">Text</label>
+        <input ng-model="model.widget.text" class="form-control" id="widgetHTMLText" name="text" required/>
+    </div>
+    <div text-angular id="widgetHTMLHead"
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+         ng-model="model.widget.text">
+    </div>
+</div>
+

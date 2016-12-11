@@ -5,10 +5,7 @@
 
     function Config($routeProvider) {
         $routeProvider
-            .when("/home", {
-                templateUrl: "views/home.html"
-            })
-            .when("/login","/",  {
+            .when("/login",  {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
@@ -21,7 +18,10 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLogin: checkLogin
+                }
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",
@@ -40,7 +40,8 @@
             })
             .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page-list.view.client.html",
-                controller: "PageListController"
+                controller: "PageListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: "views/page/page-new.view.client.html",
@@ -58,7 +59,7 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/widget/widget-new.view.client.html",
+                templateUrl: "views/widget/widget-chooser.view.client.html",
                 controller: "WidgetNewController",
                 controllerAs: "model"
             })
@@ -67,9 +68,79 @@
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
-
+            .when ("/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr", {
+                templateUrl: "views/widget/widget-flickr-search.view.client.html",
+                controller: "FlickrSearchController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/login"
             });
+
+
+
+        function checkLogin($q, $timeout, $http, $location, $rootScope, UserService)
+        {
+            var deferred = $q.defer();
+
+            //$http.get('/api/checkLogin')
+            UserService
+                .checkLogin()
+                .success(function(user)
+            {
+                //$rootScope.errorMessage = null;
+                // User is Authenticated
+                if (user != '0')
+                {
+                    //$rootScope.currentUser = user;
+                    deferred.resolve();
+                }
+                // User is Not Authenticated
+                else
+                {
+                    //$rootScope.errorMessage = 'You need to log in.';
+                    deferred.reject();
+                    $location.url('/login');
+                }
+            });
+
+            return deferred.promise;
+        }
+
+        var checkCurrentUser = function($q, $timeout, $http, $location, $rootScope)
+        {
+            var deferred = $q.defer();
+
+            $http.get('/api/checkLogin').success(function(user)
+            {
+                $rootScope.errorMessage = null;
+                // User is Authenticated
+                if (user !== '0')
+                {
+                    $rootScope.currentUser = user;
+                }
+                deferred.resolve();
+            });
+
+            return deferred.promise;
+        };
+
+        var checkAdmin = function($q, $timeout, $http, $location, $rootScope)
+        {
+            var deferred = $q.defer();
+
+            $http.get('/api/checkLogin').success(function(user)
+            {
+                $rootScope.errorMessage = null;
+                // User is Authenticated
+                if (user !== '0' && user.roles.indexOf('admin') != -1)
+                {
+                    $rootScope.currentUser = user;
+                    deferred.resolve();
+                }
+            });
+
+            return deferred.promise;
+        };
     }
 })();

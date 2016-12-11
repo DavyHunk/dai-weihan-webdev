@@ -1,0 +1,21 @@
+
+
+
+<div class="form-group">
+    <label for="widgetHeaderText">Text</label>
+    <input ng-model="model.widget.text" class="form-control" id="widgetHeaderText" name="text" required/>
+</div>
+<span ng-show="widgetForm.text.$invalid && widgetForm.$submitted">
+                Text is required
+            </span>
+<div class="form-group">
+    <label for="widgetHeaderSize">Size</label>
+    <select ng-model="model.widget.size" id="widgetHeaderSize" class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+    </select>
+</div>

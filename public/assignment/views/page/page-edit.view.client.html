@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>page-edit</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text left pull-left">
+                <a href="#/user/{{model.userId}}/website">
+                    <span class="glyphicon black glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <b>Pages</b>
+                </a>
+            </div>
+            <div class="navbar-text right-middle pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                    <span class="glyphicon black glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-8">
         <div class="navbar-text pull-left">
-            <a href="page-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon black glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -22,29 +30,54 @@
             <b>Edit Page</b>
         </a>
         <div class="navbar-text pull-right">
-            <a href="page-list.html">
+            <button  form="pageForm"
+                     type="submit"
+                     ng-click="model.updatePage(model.page)"
+                     class="btn btn-default btn-transparent">
                 <span class="glyphicon black glyphicon-ok"></span>
-            </a>
+            </button>
         </div>
     </div>
+        </div>
 </nav>
 
 
 
 
+<div class="row container-fluid">
+    <div class="col-xs-4 hidden-xs">
+        <li ng-repeat="page in model.pages"
+            class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
+               class="text">
+                {{page.name}}
+            </a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </li>
+    </div>
 
 
 
-<div class="container-fluid">
-    <form>
+    <div class="col-xs-12 col-sm-8">
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <form name="pageForm" id="pageForm" novalidate>
         <div class="form-group">
             <label for="page name">Name</label>
             <input ng-model="model.page.name"
                    type="text"
+                   required
+                   name="name"
                    class="form-control"
                    id="page name"
                    placeholder="Page Name">
         </div>
+            <span  ng-show="pageForm.$submitted && pageForm.name.$invalid">
+                Page name is required
+            </span>
         <div class="form-group">
             <label for="page-title">Title</label>
             <input ng-model="model.page.title"
@@ -52,16 +85,11 @@
                       class="form-control"
                       placeholder="Page Title">
         </div>
-    </form>
-
     <a class="btn btn-danger  btn-block"
-       href="page-list.html">Delete</a>
+       ng-click="model.deletePage(model.page._id)">Delete</a>
+            </form>
 </div>
-
-
-
-
-
+    </div>
 
 
 
@@ -70,14 +98,10 @@
     <div class="container-fluid">
         <div class="navbar-bottom">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
-

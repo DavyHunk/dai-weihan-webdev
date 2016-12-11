@@ -1,41 +1,31 @@
-//
-// (function(){
-//     angular
-//         .module("WebAppMaker")
-//         .controller("LoginController", LoginController);
-//
-//
-//     function LoginController($routeParams, UserService) {
-//         var vm = this;
-//         vm.userId = $routeParams["userId"];
-//         function init() {
-//             vm.user = UserService.findUserById(vm.userId);
-//         }
-//         init();
-//     }
-//
-// })();
-
 (function(){
     angular
         .module("WebAppMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
-        var vm = this;
 
-        vm.login = function(username, password) {
-            UserService
-                .login(username, password)
-                .then(function(response){
-                    console.log(response);
-                    var user = response.data;
-                    if(user._id) {
-                        $location.url("/profile/" + user._id);
+    function LoginController($location, UserService, $rootScope) {
+        var vm = this;
+        vm.login = login;
+
+        function login(username, password) {
+            //var promise = UserService.findUserByCredentials(username, password);
+            var promise = UserService.login(username, password);
+            promise
+                .success(function (user) {
+                    if(user != '0') {
+                        //var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
                     } else {
-                        vm.error = "User not found";
+                        //console.log("no user");
+                        vm.error = "No such user";
                     }
+                })
+                .error (function(){
+                    vm.error = "error";
                 });
         }
     }
+
 })();

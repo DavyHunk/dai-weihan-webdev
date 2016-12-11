@@ -1,0 +1,124 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon black glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="navbar-brand" href="#">
+            <b>Edit Widget</b>
+        </a>
+        <div class="navbar-text pull-right">
+            <button  form="widgetForm"
+                     type="submit"
+                     ng-click="model.updateWidget(model.widget)"
+                     class="btn btn-default btn-transparent">
+                <span class="glyphicon black glyphicon-ok"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div ng-if="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
+<form name="widgetForm" id="widgetForm" novalidate>
+    <div class="form-group">
+        <label for="widgetName">Name</label>
+        <input ng-model="model.widget.name"
+               id="widgetName"
+               class="form-control"
+               required
+               name="name"
+               type="text"
+               placeholder="Widget Name"/>
+    </div>
+
+    <div class="alert alert-danger" ng-show="widgetForm.$submitted && widgetForm.name.$invalid">
+        Widget name is required
+    </div>
+
+    <div class="form-group">
+        <label for="bootstrapClass">Bootstrap Class</label>
+        <input ng-model="model.widget.bootClass" id="bootstrapClass" class="form-control"/>
+    </div>
+</form>
+
+    <div ng-switch="model.widget.type">
+
+        <div ng-switch-when="HEADING">
+            <div ng-include src="'views/widget/widget-header.view.client.html'">
+
+            </div>
+        </div>
+
+
+            <div ng-switch-when="HTML">
+                <div ng-include src="'views/widget/widget-html-edit.view.client.html'">
+                </div>
+            </div>
+
+
+        <div ng-switch-when="TEXT">
+                <div class="form-group">
+                <label for="widgetTextText">Text</label>
+                <input ng-model="model.widget.text" class="form-control" id="widgetTextText"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetTextRows">Rows</label>
+                <input ng-model="model.widget.rows" class="form-control" type="number" id="widgetTextRows"/>
+            </div>
+            <div class="form-group">
+                <label for="widgetTextPlaceholder">Placeholder</label>
+                <input ng-model="model.widget.placeholder" class="form-control" id="widgetTextPlaceholder"/>
+            </div>
+
+            <div class="form-group">
+                <label for="widgetTextPlaceholder">Formatted</label>
+                <input ng-model="model.widget.formatted" class="form-control" type="checkbox" id="widgetTextFormatted"/>
+            </div>
+        </div>
+
+
+        <div ng-switch-when="IMAGE">
+            <div ng-include src="'views/widget/widget-image.view.client.html'">
+            </div>
+        </div>
+
+
+        <div ng-switch-when="YOUTUBE">
+            <div ng-include src="'views/widget/widget-youtube.view.client.html'">
+            </div>
+    </div>
+
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+        Delete
+    </a>
+        </div>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-bottom">
+            <p class="navbar-text pull-left">
+                <a href="#">
+                    <span class="glyphicon black glyphicon-play"></span>
+                </a>
+            </p>
+
+            <p class="navbar-brand">
+                <a href="#">
+                    <span class="glyphicon black glyphicon-eye-open"></span>
+                </a>
+            </p>
+
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

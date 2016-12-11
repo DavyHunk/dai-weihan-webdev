@@ -1,42 +1,40 @@
-//
-// (function(){
-//     angular
-//         .module("WebAppMaker")
-//         .controller("NewWebsiteController", NewWebsiteController);
-//
-//     function WebsiteListController($routeParams, WebsiteService) {
-//         var vm = this;
-//         vm.userId = $routeParams["userId"];
-//         function init() {
-//             vm.websites = WebsiteService.findWebsitesByUser(userId);
-//         }
-//         init();
-//     }
-// })();
-
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController", NewWebsiteController);
+        .controller("WebsiteNewController", WebsiteNewController);
 
-    function NewWebsiteController($location, $routeParams, WebsiteService) {
+    function WebsiteNewController($location, $routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
+        vm.userId = $routeParams.uid;
         vm.createWebsite = createWebsite;
 
-        function createWebsite(name, description) {
+        function init() {
             WebsiteService
-                .createWebsite(vm.userId, name, description)
-                .then(
-                    function (response) {
-                        var newWebsite = response.data;
-                        if(newWebsite) {
-                            $location.url("/user/"+vm.userId+"/website");
-                        } else {
-                            vm.error = "Unable to create website";
-                        }
-                    }
-                )
+                .findWebsitesByUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                })
+                .error (function(){
+                    vm.error = "error";
+                });
+        }
+        init();
+
+
+        function createWebsite(website) {
+        if(website.name === undefined || !website.name){
+            vm.error = "error";
+            }
+        else {
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .success(function () {
+                    $location.url("/user/" + vm.userId + "/website");
+                })
+                .error(function () {
+                    vm.error = "error";
+                });
+        }
         }
     }
 })();

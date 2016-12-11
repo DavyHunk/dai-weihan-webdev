@@ -1,37 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-    <div class="container">
+<div class="container">
+<form name="registerForm" id="registerForm" novalidate>
+
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+
         <h1>Register</h1>
         <input ng-model="model.user.username"
-                type="text"
+               type="text"
+               required
+               name="username"
+               id="username"
+               autocorrect="off"
+               autocapitalize="off"
                class="form-control"
                placeholder="Username"/>
-<<<<<<< HEAD:public/assignment/views/user/register.view.client.html
+    <div class="alert alert-danger" ng-show="registerForm.$submitted && registerForm.username.$invalid">
+        Username is required
+    </div>
+
+
         <input ng-model="model.user.password"
-                type="password"
+               type="password"
+               required
+               id="password"
+               name="password"
                class="form-control"
                placeholder="Password"/>
-        <input ng-model="model.user.password"
-                type="password"
-=======
-        <input type="password"
-               class="form-control"
-               placeholder="Password"/>
-        <input type="password"
->>>>>>> origin/master:public/assignment/register.html
+    <div class="alert alert-danger" ng-show="registerForm.$submitted && registerForm.password.$invalid">
+        Password is required
+    </div>
+
+        <input ng-model="model.user.password2"
+               type="password"
+               required
+               id="password2"
+               name="password2"
                class="form-control"
                placeholder="Verify Password"/>
-        <a class="btn btn-primary btn-block"
-           href="profile.html">Register</a>
-        <a class="btn btn-danger  btn-block"
-           href="login.html">Cancel</a>
+    <div class="alert alert-danger" ng-show="registerForm.$submitted && registerForm.password2.$invalid">
+        Verified password is required
     </div>
-</body>
-</html>
+
+    <div class="alert alert-danger" ng-show="registerForm.$submitted && !registerForm.password2.equals(registerForm.password)">
+        Password and verified password should be the same
+    </div>
+
+    <button class="btn btn-primary btn-block"
+            form = "registerForm"
+            type="submit"
+            ng-click="model.register(model.user.username,
+            model.user.password, model.user.password2)">
+            Register
+    </button>
+    </form>
+
+
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Cancel</a>
+
+</div>
